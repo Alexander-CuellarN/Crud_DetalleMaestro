@@ -1,0 +1,79 @@
+﻿@{
+    ViewData["Title"] = "Categorias";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model List<Categoria>
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1>Categorias</h1>
+    </div>
+    <div class="col-lg-12 my-1">
+        <div class=" d-flex justify-content-end mb-2">
+            <button class="btn btn-primary"
+                    id="addCategoria"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modelCategoriaActions"
+                    data-bs-Action="Crear"
+                    data-bs-Categoria="0">
+                Crear Categoria
+            </button>
+        </div>
+        <table class="table table-bordered table-striped" id="TableCategoriaList">
+            <thead>
+                <tr>
+                    <th class="w-75"> Nombre</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var categoria in Model)
+                {
+                    <tr id="tr_@categoria.IdCategria">
+                        <td>@categoria.Nombre</td>
+                        <td>
+                            <button class="btn btn-info btn-sm"
+                                    id="addCategoria"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#modelCategoriaActions"
+                                    data-bs-Action="Modificar"
+                                    data-bs-Categoria="@categoria.IdCategria">
+                                Editar
+                            </button>
+
+                            <button data-indenficador="@categoria.IdCategria" class="btn btn-danger btn-sm deleteAction">Borrar</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" id="modelCategoriaActions">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><span class="textAction"></span> Categoria</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <label for="txtNombre">Nombre</label>
+                <input type="text" class="form-control form-control-sm mt-1" id="txtModalName" />
+                <input type="hidden" value="" id="ModalIdCategoria" />
+                <div class="d-flex justify-content-center">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="ModalCloseElement">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="ModalActionConfirm"><span class="textAction"></span></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    <script src="~/js/CategoriaJs.js" type="module"></script>
+}
