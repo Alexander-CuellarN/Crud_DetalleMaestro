@@ -1,4 +1,7 @@
-﻿document.addEventListener('show.bs.modal', event => {
+﻿
+import { showNotification  } from '../js/utils/notifications.js'
+
+document.addEventListener('show.bs.modal', event => {
     let { bsAction: Action, bsCategoria: idCategoria } = event.explicitOriginalTarget.dataset
 
     document.querySelectorAll(".textAction").forEach(element => {
@@ -36,24 +39,7 @@ const listarCategorias = async () => {
     let data = await request.json();
 };
 
-const showNotification = (message, type) => {
 
-    let NoticationContent = document.getElementById("NotificationContainer")
-    console.log(NoticationContent.clas)
-    NoticationContent.classList.add("show");
-
-    let notificationText = document.getElementById("notificationContent")
-    notificationText.innerHTML = ""
-    notificationText.innerHTML = message
-
-    if (type === 'ERROR') {
-        NoticationContent.classList.remove("bg-success")
-        NoticationContent.classList.add("bg-danger");
-    } else {
-        NoticationContent.classList.remove("bg-danger")
-        NoticationContent.classList.add("bg-success");
-    }
-}
 
 const addTr = (idCategoria, nombre) => {
 
