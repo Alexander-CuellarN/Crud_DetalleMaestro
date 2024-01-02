@@ -18,14 +18,10 @@ namespace Crud_DetalleMaestro.Controllers
         public async Task<IActionResult> Index()
         {
             var categoriaList = await _context.Categoria.ToListAsync();
+            ViewData["ClassActived"] = "Categoria";
             return View(categoriaList);
         }
 
-        public IActionResult Create()
-        {
-
-            return View();
-        }
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] Categoria Categoria)
         {

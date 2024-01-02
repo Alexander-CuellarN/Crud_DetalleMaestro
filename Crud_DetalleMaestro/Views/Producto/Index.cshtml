@@ -5,34 +5,34 @@
 @model List<Producto>
 
 <div class="row">
-    <div class="col_lg_12">
+    <div class="col_lg_12 contentTitle">
         <h1>Productos</h1>
     </div>
     <div class="col_lg_12">
         <div class="d-flex justify-content-end mb-2">
-            <a asp-action="Create" asp-controller="Producto" class="btn btn-primary"> Crear Producto</a>
+            <a asp-action="Create" asp-controller="Producto" class="btn myBtn myBtnNew"> Crear Producto</a>
         </div>
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>Nombre</th>
-                    <th>Stock</th>
-                    <th>categoria</th>
-                    <th>Precio</th>
+                    <th>Nombre    </th>
+                    <th>Stock     </th>
+                    <th>categoria </th>
+                    <th>Precio    </th>
                     <th class="w-5">Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach(var producto in Model)
+                @foreach (var producto in Model)
                 {
                     <tr id="tr_@producto.IdProducto">
-                        <td>@producto.Nombre</td>
-                        <td>@producto.Stock</td>
+                        <td>@producto.Nombre </td>
+                        <td>@producto.Stock  </td>
                         <td>@producto.CategoriaNavigation.Nombre</td>
                         <td>@producto.Precio</td>
                         <td>
-                            <a asp-action="Update" asp-controller="Producto"  asp-route-id="@producto.IdProducto" class="btn btn-primary btn-sm">Modificar</a>
-                            <button class="btn btn btn-danger btn-sm removeElement" data-Identificator="@producto.IdProducto"> Eliminar</button>
+                            <a asp-action="Update" asp-controller="Producto" asp-route-id="@producto.IdProducto" class="btn myBtn myBtnEdit">Modificar</a>
+                            <button class="btn myBtn myBtnDelete removeElement" data-Identificator="@producto.IdProducto"> Eliminar</button>
                         </td>
                     </tr>
                 }
@@ -41,7 +41,7 @@
     </div>
 </div>
 
-@using(Html.BeginForm())
-@section Scripts{
+@using (Html.BeginForm())
+    @section Scripts {
     <script src="~/js/Producto.js" type="module"></script>
-}
+    }

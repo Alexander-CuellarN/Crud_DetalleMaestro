@@ -35,7 +35,7 @@ namespace Crud_DetalleMaestro
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Producto}/{action=Index}/{id?}");
+                pattern: "{controller=Pedidos}/{action=Index}/{id?}");
 
             app.Run();
         }

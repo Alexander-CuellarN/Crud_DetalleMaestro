@@ -14,12 +14,15 @@ namespace Crud_DetalleMaestro.Controllers
         }
         public IActionResult Index()
         {
+            ViewData["ClassActived"] = "Producto";
+
             var prodcutos = _context.Productos.Include(p => p.CategoriaNavigation).ToList();
             return View(prodcutos);
         }
 
         public IActionResult Create()
         {
+            ViewData["ClassActived"] = "Producto";
             ViewBag.Categorias = _context.Categoria.ToList();
 
             return View();
@@ -29,6 +32,7 @@ namespace Crud_DetalleMaestro.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Producto producto)
         {
+            ViewData["ClassActived"] = "Producto";
             ViewBag.Categorias = _context.Categoria.ToList();
 
             if (!ModelState.IsValid)
@@ -43,6 +47,7 @@ namespace Crud_DetalleMaestro.Controllers
 
         public IActionResult Update(int id)
         {
+            ViewData["ClassActived"] = "Producto";
             var producto = _context.Productos
                             .Include(p => p.CategoriaNavigation)
                             .FirstOrDefault(p => p.IdProducto == id);

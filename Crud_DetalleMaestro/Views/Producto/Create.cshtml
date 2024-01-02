@@ -4,7 +4,7 @@
 }
 @model Producto
 <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-12 contentTitle">
         <h1>Crear Producto</h1>
     </div>
     <div class="col-lg-12">
@@ -40,9 +40,9 @@
                 <span class="text-danger" asp-validation-for="Precio"></span>
             </div>
             
-            <div>
-                <button type="submit" class="btn btn-primary">Crear</button>
-                <a asp-action="Index" asp-controller="Producto" class="btn btn-outline-primary">Regresar</a>
+            <div class="d-flex justify-content-center m-2">
+                <button type="submit" class="btn myBtn myBtnNew">Crear</button>
+                <a asp-action="Index" asp-controller="Producto" class="btn myBtn myBtnInfo">Regresar</a>
             </div>
         }
     </div>

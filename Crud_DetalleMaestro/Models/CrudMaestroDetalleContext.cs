@@ -38,6 +38,7 @@ public partial class CrudMaestroDetalleContext : DbContext
             entity.Property(e => e.FechaCreacion)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
+
             entity.Property(e => e.Nombre)
                 .HasMaxLength(50)
                 .IsUnicode(false);
@@ -69,6 +70,14 @@ public partial class CrudMaestroDetalleContext : DbContext
             entity.Property(e => e.Total)
                 .HasColumnType("decimal(18, 0)")
                 .HasColumnName("total");
+
+            entity.Property(e => e.Nombre)
+                            .HasMaxLength(50)
+                            .IsUnicode(false);
+
+            entity.Property(e => e.Nit)
+                            .HasMaxLength(50)
+                            .IsUnicode(false);
         });
 
         modelBuilder.Entity<Producto>(entity =>
@@ -78,12 +87,18 @@ public partial class CrudMaestroDetalleContext : DbContext
             entity.ToTable("producto");
 
             entity.Property(e => e.Categoria).HasColumnName("categoria");
+
             entity.Property(e => e.FechaCreacion)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
+
             entity.Property(e => e.Nombre)
                 .HasMaxLength(100)
                 .IsUnicode(false);
+
+            entity.Property(e => e.Precio)
+                .HasColumnType("decimal(18, 0)")
+                .HasColumnName("Precio");
 
             entity.HasOne(d => d.CategoriaNavigation).WithMany(p => p.Productos)
                 .HasForeignKey(d => d.Categoria)

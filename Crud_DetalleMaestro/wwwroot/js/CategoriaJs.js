@@ -6,6 +6,10 @@ document.addEventListener('show.bs.modal', event => {
 
     document.querySelectorAll(".textAction").forEach(element => {
         element.innerHTML = ` ${Action} `
+        element.classList.remove("myBtnEdit")
+        element.classList.remove("myBtnNew")
+
+        element.classList.add((idCategoria !== '0') ? 'myBtnEdit' : 'myBtnNew')
     })
 
     if (idCategoria !== '0') {
@@ -47,9 +51,9 @@ const addTr = (idCategoria, nombre) => {
                    <tr id="tr_${idCategoria}">
                         <td>${nombre}</td>
                         <td>
-                            <button class="btn btn-info btn-sm"
+                            <button class="btn myBtn myBtnEdit"
                                 id="addCategoria"
-                                data-bs-toggle="modal" d
+                                data-bs-toggle="modal"
                                 data-bs-target="#modelCategoriaActions"
                                 data-bs-action="Modificar"
                                 data-bs-categoria="${idCategoria}">
@@ -57,7 +61,7 @@ const addTr = (idCategoria, nombre) => {
                              </button>
 
                             <button data-indenficador="${idCategoria}" 
-                            class="btn btn-danger btn-sm 
+                            class="btn myBtn myBtnDelete 
                             deleteAction">Borrar</button>
                          </td>
                  </tr>`;

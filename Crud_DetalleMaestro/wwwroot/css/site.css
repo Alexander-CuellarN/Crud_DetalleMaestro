@@ -1,22 +1,137 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    /*background-color: #74EBD5;
+    background-image: linear-gradient(90deg, #74EBD5 0%, #9FACE6 100%);*/
 }
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 20% 1fr;
+    overflow: hidden;
+    background-color: #92b5b8;
+    background-image: linear-gradient(14deg, #92b5b8 0%, #625b62 49%);
+}
+
+.MenuContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.lateralMenu {
+    width: 100%;
+    height: 100%;
+    background-color: #231e1ecc;
+    color: #00000074;
+    padding: 5vh 0 0 2vw;
+}
+
+
+    .lateralMenu a {
+        color: #ffffff74;
+        text-decoration: none;
+        font-size: 1.2rem;
+        font-weight: 600;
+        transition: font-weight ease .2s, color ease .2s
+    }
+
+        .lateralMenu a:visited, .lateralMenu a:active {
+            text-decoration: none;
+        }
+
+    .lateralMenu .SectionActive {
+        font-weight: 800;
+        color: white;
+        font-size: 1.4rem;
+        text-decoration: underline;
+    }
+
+
+    .lateralMenu a:hover {
+        font-weight: 800;
+        color: white;
+        font-size: 1.6rem;
+        text-decoration: underline;
+    }
+
+.containerMain {
+    padding: 2vh 2vw;
+    height: 100%;
+    overflow: scroll;
+
+}
+
+.container-bg {
+    height: 99%;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid white;
+    padding: 2vh 2vw;
+    border-radius: 1vw;
+    box-shadow: 3px -3px  #fff;
+    background-color: white;
+}
+
+.contentTitle h1{
+    font-weight: 700;
+}
+
+.contentTitle {
+    display: flex;
+    justify-content: center;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+}
+
+myBtn {
+    transition: text-decoration .5s ease-in, border .5s ease-out;
+}
+
+.myBtnNew:hover {
+    text-decoration: underline #66e14e;
+    font-weight: 600;
+}
+
+.myBtnEdit:hover {
+    text-decoration: underline #364aaa;
+    font-weight: 600;
+}
+.myBtnDelete:hover {
+    text-decoration: underline #bd3030;
+    font-weight: 600;
+}
+
+.myBtnInfo:hover {
+    text-decoration: underline #0d164a;
+    font-weight: 600;
+}
+
+/*    
+    myBtn
+    myBtnNew
+    myBtnEdit
+    myBtnDelete	
+*/
