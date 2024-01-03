@@ -1,5 +1,6 @@
 ﻿export const showNotification = (message, type) => {
 
+    console.log(type)
     let NoticationContent = document.getElementById("NotificationContainer")
     console.log(NoticationContent.clas)
     NoticationContent.classList.add("show");

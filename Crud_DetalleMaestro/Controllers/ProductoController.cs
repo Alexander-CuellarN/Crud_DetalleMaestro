@@ -1,6 +1,7 @@
 ﻿using Crud_DetalleMaestro.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Protocol.Plugins;
 
 namespace Crud_DetalleMaestro.Controllers
 {
@@ -65,7 +66,7 @@ namespace Crud_DetalleMaestro.Controllers
         {
             var product = _context.Productos.Find(id);
 
-            if (product == null) 
+            if (product == null)
                 return BadRequest();
 
             if (product.IdProducto != id)
@@ -88,6 +89,7 @@ namespace Crud_DetalleMaestro.Controllers
         }
 
         [HttpDelete]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
             try
@@ -101,6 +103,21 @@ namespace Crud_DetalleMaestro.Controllers
             catch (Exception)
             {
                 return BadRequest();
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GellAllProducts()
+        {
+            try
+            {
+                var productos = await _context.Productos.ToListAsync();
+                return Json(new { message = "Se encontraro los Prductos", data = productos });
+            }
+            catch (Exception)
+            {
+                List<Producto> productos = new List<Producto>();
+                return Json(new { message = "no se han encontraro los Prductos", data = productos });
             }
         }
 

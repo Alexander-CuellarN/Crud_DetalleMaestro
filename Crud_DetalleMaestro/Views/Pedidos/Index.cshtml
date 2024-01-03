@@ -5,55 +5,68 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<div class="row">
+    <div class="col_lg_12 contentTitle">
+        <h1>Pedidos</h1>
+    </div>
+    <div class="col_lg_12">
+        <div class="d-flex justify-content-end mb-2">
+            <a asp-action="Create" asp-controller="Pedidos" class="btn myBtn myBtnNew"> Crear Pedido</a>
+        </div>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Nit</th>
+                    <th w-75>Nombre</th>
+                    <th>Total </th>
+                    <th class="w-5">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var pedido in Model)
+                {
+                    <tr id="tr_@pedido.IdPedido">
+                        <td>@pedido.Nit </td>
+                        <td>@pedido.Nombre  </td>
+                        <td>@pedido.Total</td>
+                        <td>
+                            <button class="btn myBtn myBtnInfo ListDetails" data-Identificator="@pedido.IdPedido" data-bs-toggle="modal" data-bs-target="#ModalList"> Detalles</button>
+                            <a asp-action="Edit" asp-controller="Pedidos" asp-route-id="@pedido.IdPedido" class="btn myBtn myBtnEdit">Modificar</a>
+                            <button class="btn myBtn myBtnDelete removeElement" data-Identificator="@pedido.IdPedido"> Eliminar</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Total)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Nit)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
-            <th>
-                Productos
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Total)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nit)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
+    <!-- Modal -->
+    <div class="modal fade " id="ModalList" tabindex="-1" aria-labelledby="ModalList" aria-hidden="true">
+        <div class="modal-dialog  modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Lista de Productos</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped table-responsive ">
+                        <thead>
+                            <tr>
+                                <th>Producto</th>
+                                <th>Precio</th>
+                                <th>Cantidad</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableProductsContent">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-                <td>
-                    @* @foreach (var producto in item.DetallePedidos)
-                    {
-                        <strong> @producto.Producto.nombre</strong>
-                    } *@
-                </td>
-
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.IdPedido">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdPedido">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdPedido">Delete</a>
-            </td>
-        </tr>
+@section Scripts {
+    <script src="~/js/pedidoList.js" type="module"></script>
 }
-    </tbody>
-</table>

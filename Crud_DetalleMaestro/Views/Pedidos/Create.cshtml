@@ -1,0 +1,85 @@
+﻿@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Pedido
+
+<div class="row">
+    <div class="col-lg-12 contentTitle">
+        <h1>Crear Pedido</h1>
+    </div>
+    <div class="col-lg-12">
+        @using (Html.BeginForm("Create", "Pedido", FormMethod.Post, new { @class = "col-lg-12" }))
+        {
+            <div class="form-group mb-2">
+                <label for="Nombre" class="form-label">Nit</label>
+                <input type="text" asp-for="Nit" class="form-control" id="txtNit" />
+                <span class="text-danger" asp-validation-for="Nit"></span>
+            </div>
+
+            <div class="form-group mb-2">
+                <label for="Stock">Nombre</label>
+                <input type="text" asp-for="Nombre" class="form-control" id="txtNombre" />
+                <span class="text-danger" asp-validation-for="Nombre"></span>
+            </div>
+
+            <div class="d-flex justify-content-end m-2">
+                <button type="button" class="btn myBtn myBtnInfo" data-bs-toggle="modal" data-bs-target="#PedidosDetalle">
+                    Agregar/Ver Productos
+                </button>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade  " id="PedidosDetalle" tabindex="-1" aria-labelledby="PedidosDetalle_" aria-hidden="true">
+                <div class="modal-dialog modal-lg ">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="PedidosDetalle_">Agregar productos al pedido</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="d-flex justify-content-end" >
+                                <button class="btn myBtn myBtnInfo" type="button" id="addProduct">Agregar producto</button>
+                            </div>
+                            <table id="tableProducts" class="table table-striped table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th>Producto</th>
+                                        <th>Precio</th>
+                                        <th>Stock</th>
+                                        <th>Cantidad</th>
+                                        <th>Total</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="ProductosDetalleModel">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group mb-2">
+                <label for="Precio">Total</label>
+                <input type="number" asp-for="Total" class="form-control" id="CurrentTotalPedido" disabled />
+                <span class="text-danger" asp-validation-for="Total"></span>
+            </div>
+
+            <div class="d-flex justify-content-center m-2">
+                <button type="button" class="btn myBtn myBtnNew" id="addNewPedido">Crear</button>
+                <a asp-action="Index" asp-controller="Pedidos" class="btn myBtn myBtnInfo">Regresar</a>
+            </div>
+        }
+    </div>
+</div>
+
+
+@section Scripts{
+    <script src="~/js/Pedidos.js" type="module"></script>
+}
