@@ -30,7 +30,7 @@ body {
 }
 
 .container{
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 .MenuContainer {
@@ -38,7 +38,6 @@ body {
     height: 100%;
     display: flex;
     flex-flow: column nowrap;
-    overflow: scroll;
 }
 
 .lateralMenu {
@@ -80,8 +79,6 @@ body {
 .containerMain {
     padding: 2vh 2vw;
     height: 100%;
-    overflow: scroll;
-
 }
 
 .container-bg {
@@ -93,7 +90,7 @@ body {
     border-radius: 1vw;
     box-shadow: 3px -3px  #fff;
     background-color: white;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 .contentTitle h1{

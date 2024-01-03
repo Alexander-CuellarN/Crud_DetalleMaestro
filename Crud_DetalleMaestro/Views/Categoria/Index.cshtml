@@ -10,8 +10,7 @@
     </div>
     <div class="col-lg-12 my-1">
         <div class=" d-flex justify-content-end mb-2">
-            <button class="btn myBtn myBtnNew"
-                    id="addCategoria"
+            <button class="btn myBtn myBtnNew addCategoria"
                     data-bs-toggle="modal"
                     data-bs-target="#modelCategoriaActions"
                     data-bs-Action="Crear"
@@ -32,8 +31,7 @@
                     <tr id="tr_@categoria.IdCategria">
                         <td>@categoria.Nombre</td>
                         <td>
-                            <button class=" btn myBtn myBtnEdit"
-                                    id="addCategoria"
+                            <button class=" btn myBtn myBtnEdit addCategoria"
                                     data-bs-toggle="modal"
                                     data-bs-target="#modelCategoriaActions"
                                     data-bs-Action="Modificar"
@@ -41,7 +39,7 @@
                                 Editar
                             </button>
 
-                            <button data-indenficador="@categoria.IdCategria" class="btn myBtn myBtnDelete deleteAction">Borrar</button>
+                            <button type="button" data-indenficador="@categoria.IdCategria" class="btn myBtn myBtnDelete deleteAction">Borrar</button>
                         </td>
                     </tr>
                 }
@@ -73,5 +71,5 @@
 </div>
 
 @section Scripts {
-    <script src="~/js/CategoriaJs.js" type="module"></script>
+    <script src="/js/CategoriaJs.js" type="module"></script>
 }

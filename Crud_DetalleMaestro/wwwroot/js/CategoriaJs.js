@@ -1,27 +1,37 @@
 ﻿
-import { showNotification  } from '../js/utils/notifications.js'
+import { showNotification } from '../js/utils/notifications.js'
 
-document.addEventListener('show.bs.modal', event => {
-    let { bsAction: Action, bsCategoria: idCategoria } = event.explicitOriginalTarget.dataset
+const refreshListButtons = () => {
+    document.querySelectorAll(".addCategoria").forEach(element => {
+        console.log(element)
+        element.addEventListener('click', event => {
+            console.log(element)
+            document.getElementById("txtModalName").value = ""
+            let { bsAction: Action, bsCategoria: idCategoria } = event?.target?.dataset
+            document.querySelectorAll(".textAction").forEach(element => {
+                element.innerHTML = ` ${Action} `
+                element.classList.remove("myBtnEdit")
+                element.classList.remove("myBtnNew")
 
-    document.querySelectorAll(".textAction").forEach(element => {
-        element.innerHTML = ` ${Action} `
-        element.classList.remove("myBtnEdit")
-        element.classList.remove("myBtnNew")
+                element.classList.add((idCategoria !== '0') ? 'myBtnEdit' : 'myBtnNew')
+            })
 
-        element.classList.add((idCategoria !== '0') ? 'myBtnEdit' : 'myBtnNew')
+            if (idCategoria !== '0') {
+
+                document.getElementById("ModalIdCategoria").value = idCategoria
+
+                fetch(`./Categoria/GetCategoriaById/${idCategoria}`)
+                    .then(data => data.json())
+                    .then(data => document.getElementById("txtModalName").value = data.nombre)
+                    .catch(_ => alert("Se ha produccido un error"))
+            }
+        });
     })
 
-    if (idCategoria !== '0') {
-
-        document.getElementById("ModalIdCategoria").value = idCategoria
-
-        fetch(`./Categoria/GetCategoriaById/${idCategoria}`)
-            .then(data => data.json())
-            .then(data => document.getElementById("txtModalName").value = data.nombre)
-            .catch(_ => alert("Se ha produccido un error"))
-    }
-});
+    document.querySelectorAll(".deleteAction").forEach(item => {
+        item.addEventListener("click", () => DeleteRow(item))
+    })
+}
 
 document.getElementById("ModalActionConfirm").addEventListener("click", () => {
     let value = document.getElementById("txtModalName").value
@@ -35,14 +45,9 @@ document.getElementById("ModalActionConfirm").addEventListener("click", () => {
     } else {
         UpdateCategoria(value)
     }
+
+    refreshListButtons()
 })
-
-const listarCategorias = async () => {
-
-    let request = await fetch("/Categoria/ListAll");
-    let data = await request.json();
-};
-
 
 
 const addTr = (idCategoria, nombre) => {
@@ -51,8 +56,7 @@ const addTr = (idCategoria, nombre) => {
                    <tr id="tr_${idCategoria}">
                         <td>${nombre}</td>
                         <td>
-                            <button class="btn myBtn myBtnEdit"
-                                id="addCategoria"
+                            <button class="btn myBtn myBtnEdit addCategoria"
                                 data-bs-toggle="modal"
                                 data-bs-target="#modelCategoriaActions"
                                 data-bs-action="Modificar"
@@ -69,8 +73,9 @@ const addTr = (idCategoria, nombre) => {
     document.getElementById("TableCategoriaList").innerHTML += plantilla
 
     document.querySelectorAll(".deleteAction").forEach(item => {
-        item.addEventListener("click",() => DeleteRow(item))
+        item.addEventListener("click", () => DeleteRow(item))
     })
+    refreshListButtons()
 }
 
 const AddCategoria = async (value) => {
@@ -93,6 +98,7 @@ const AddCategoria = async (value) => {
     document.getElementById("txtModalName").value = ""
     document.getElementById("ModalCloseElement").click()
     showNotification(response, "Success");
+    refreshListButtons();
 }
 
 const UpdateCategoria = (value) => {
@@ -119,12 +125,8 @@ const UpdateCategoria = (value) => {
             document.getElementById("ModalCloseElement").click()
             showNotification(message, "Success")
         })
-
+    refreshListButtons()
 }
-
-document.querySelectorAll(".deleteAction").forEach(item => {
-    item.addEventListener("click", () => DeleteRow(item))
-})
 
 function DeleteRow(item) {
     let { indenficador } = item.dataset
@@ -138,4 +140,7 @@ function DeleteRow(item) {
             showNotification(message, "success")
         })
         .catch(_ => showNotification("No se ha podido eliminar la categoria", "Error"))
+    refreshListButtons()
 }
+
+refreshListButtons()

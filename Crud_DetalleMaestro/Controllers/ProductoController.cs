@@ -89,7 +89,6 @@ namespace Crud_DetalleMaestro.Controllers
         }
 
         [HttpDelete]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
             try
@@ -102,7 +101,7 @@ namespace Crud_DetalleMaestro.Controllers
             }
             catch (Exception)
             {
-                return BadRequest();
+                return BadRequest(new { response = "No se ha podido eliminar el producto" });
             }
         }
 

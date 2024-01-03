@@ -11,14 +11,15 @@
 <body>
     <header class="lateralMenu ">
         <nav class=" MenuContainer">
-            <a asp-controller="Producto" asp-action="Index"
-               class="@(ViewData["ClassActived"].Equals("Producto") ? "SectionActive" : "")">
-                Productos
-            </a>
             <a asp-controller="Categoria" asp-action="Index"
                class="@(ViewData["ClassActived"].Equals("Categoria") ? "SectionActive" : "")">
                 Categorias
             </a>
+
+            <a asp-controller="Producto" asp-action="Index"
+               class="@(ViewData["ClassActived"].Equals("Producto") ? "SectionActive" : "")">
+                Productos
+            </a>            
 
             <a asp-controller="Pedidos" asp-action="Index"
                class="@(ViewData["ClassActived"].Equals("Pedidos") ? "SectionActive" : "")">
